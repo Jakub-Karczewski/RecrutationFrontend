@@ -1,8 +1,17 @@
-import {MapContainer, TileLayer, useMapEvents} from "react-leaflet";
+import {MapContainer, Marker, Popup, TileLayer, useMapEvents} from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import {useState} from "react";
 
-function LocationMarker({ onChange }) {
+const customMarkerIcon = new L.DivIcon({
+    html: `<div style="color: red; font-size: 32px;">
+           <i class="fas fa-map-marker-alt"></i>
+         </div>`,
+    className: ''
+});
+
+function LocationMarker({ onChange, position }) {
     useMapEvents({
         click(e) {
             const {lat, lng} = e.latlng;
@@ -10,8 +19,11 @@ function LocationMarker({ onChange }) {
             onChange(pos);
         },
     });
+    return position === null ? null : (
+        <Marker position={position} icon={customMarkerIcon} />
+    );
 }
-const WeatherMap = ({onChange}) => {
+const WeatherMap = ({onChange, position}) => {
     const h = '400px'
     const w = '100%'
     return<div class="flex justify-center">
@@ -25,7 +37,7 @@ const WeatherMap = ({onChange}) => {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <LocationMarker onChange={onChange}/>
+        <LocationMarker onChange={onChange} position={position}/>
     </MapContainer>
     </div>
 }

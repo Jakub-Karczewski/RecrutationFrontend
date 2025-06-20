@@ -39,7 +39,7 @@ function App() {
         try{
           const data = await getWeatherDaily(position.lat, position.lon);
           setWeatherData(data);
-          console.log('Fetched weather daily from APP:', data);
+          console.log('Fetched weather daily from App:', data);
         } catch (error){
           console.error('Error fetching weather daily from APP:', error);
         }
@@ -47,7 +47,7 @@ function App() {
         try{
             const summ = await getWeatherSummary(position.lat, position.lon);
             setWeekSummary(summ);
-            console.log('Fetched weather daily from APP:', summ);
+            console.log('Fetched weather summary from App:', summ);
         } catch (error){
             console.error('Error fetching weather summary from APP:', error);
         }
@@ -85,7 +85,7 @@ function App() {
 
   return <div>
       <MainHeader title="Aplikacja pogodowa" className="mb-8"/>
-      <WeatherMap onChange={setPosition}/>
+      <WeatherMap onChange={setPosition} position={position}/>
       <TabPanel onToggle={toggleButton} activeButtons={activeButtons}/>
       <div className="flex">
           <div className="flex-1">
@@ -115,9 +115,6 @@ function App() {
           </div>
       </div>
       <div style={{height: '100px'}}></div>
-      {
-          //JSON.stringify(position)
-      }
   </div>
 
 }

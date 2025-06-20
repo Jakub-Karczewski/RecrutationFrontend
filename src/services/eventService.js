@@ -2,7 +2,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 export async function getWeatherDaily(lat, lon) {
     const url = `${API_URL}/weather-daytoday?lat=${lat}&lon=${lon}`;
-    console.log("url: ", url);
+    //console.log("url: ", url);
     const response = await fetch(url, {
         method: "GET",
         headers: {
@@ -17,10 +17,10 @@ export async function getWeatherDaily(lat, lon) {
     }
     const weatherDaily = await response.json();
 
-    console.log("daily: ", weatherDaily)
+    //console.log("daily: ", weatherDaily)
 
     const daysArray = Object.values(weatherDaily);
-    console.log("days array: ", daysArray);
+    //console.log("days array: ", daysArray);
     return daysArray;
 }
 
@@ -39,7 +39,7 @@ export async function getWeatherSummary(lat, lon){
     if (!response.ok) {
         throw new Error("Failed to fetch Weather DayToDay.");
     }
-    console.log("summary: ", weatherSummary);
+    //console.log("summary: ", weatherSummary);
 
     return {
         avgSunlight: weatherSummary.avgSunlight,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSun, faChartLine, faTemperatureHigh, faTemperatureLow  } from '@fortawesome/free-solid-svg-icons';
+import { faSun, faChartLine, faTemperatureHigh, faTemperatureLow, faCloudRain  } from '@fortawesome/free-solid-svg-icons';
 
 const SummaryTable = ({data}) => {
     return (
@@ -30,7 +30,7 @@ const SummaryTable = ({data}) => {
                 </div>
             </div>
             <div className="flex items-center bg-blue-200 justify-start">
-                <FontAwesomeIcon icon={faTemperatureLow} className="text-blue-500 text-2xl p-3"/>
+                <FontAwesomeIcon icon={faCloudRain} className="text-2xl p-3"/>
                 <div className="ml-4 text-lg font-semibold text-gray-800">
                     <span> Opady: {data.description} </span>
                 </div>
